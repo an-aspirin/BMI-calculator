@@ -3,88 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculator</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        .hidden {
-            display: none;
-        }
-        .button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .input-field {
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 200px;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
+    <title>BMI Calculation</title>
 </head>
 <body>
 
-    <h1>BMI Calculator</h1>
-    <p>A quick tool to calculate your Body Mass Index (BMI) based on your weight and height.</p>
+    <h1>Calculate Your AgeBioDelta</h1>
 
-    <button id="startBtn" class="button">Start Here</button>
+    <!-- Example button to trigger calculation -->
+    <button onclick="calculateAndShowAgeBioDelta()">Calculate AgeBioDelta</button>
 
-    <div id="inputSection" class="hidden">
-        <input id="weight" class="input-field" type="number" placeholder="Enter weight in kg" required>
-        <input id="height" class="input-field" type="number" placeholder="Enter height in cm" required>
-        <button id="calculateBtn" class="button">Calculate BMI</button>
-    </div>
+    <!-- Result will be shown here -->
+    <div id="result"></div>
 
-    <div id="resultSection" class="hidden result"></div>
+    <!-- Include the ageBioDelta.js file -->
+    <script src="ageBioDelta.js"></script>
 
     <script>
-        document.getElementById('startBtn').addEventListener('click', function() {
-            this.classList.add('hidden');
-            document.getElementById('inputSection').classList.remove('hidden');
-        });
+        function calculateAndShowAgeBioDelta() {
+            // Example data for testing
+            let height = 170; // cm
+            let weight = 75;  // kg
+            let MAC = 32;     // cm
+            let TSF = 18;     // mm
+            let SSF = 20;     // mm
+            let THC = 52;     // cm
+            let CAC = 38;     // cm
+            let WC = 93;      // cm
+            let age = 45;     // Age of the user
+            let gender = "female"; // Gender of the user ("female" or "male")
 
-        document.getElementById('calculateBtn').addEventListener('click', function() {
-            const weight = parseFloat(document.getElementById('weight').value);
-            const height = parseFloat(document.getElementById('height').value) / 100; // convert height to meters
-            if (isNaN(weight) || isNaN(height) || height <= 0) {
-                alert('Please enter valid weight and height values.');
-                return;
-            }
+            // Call the function from ageBioDelta.js
+            let ageBioDelta = calculateAgeBioDelta(height, weight, MAC, TSF, SSF, THC, CAC, WC, age, gender);
 
-            const bmi = weight / (height * height);
-            let message = '';
-
-            if (bmi < 18.5) {
-                message = 'Underweight. Consider gaining weight.';
-            } else if (bmi >= 18.5 && bmi < 24.9) {
-                message = 'Normal weight. Keep up the good work!';
-            } else if (bmi >= 25 && bmi < 29.9) {
-                message = 'Overweight. Consider losing some weight.';
-            } else {
-                message = 'Obesity. Consult a healthcare provider for advice.';
-            }
-
-            document.getElementById('resultSection').innerHTML = `Your BMI is ${bmi.toFixed(2)}. ${message}`;
-            document.getElementById('resultSection').classList.remove('hidden');
-        });
+            // Display the result
+            document.getElementById('result').innerText = "The calculated ageBioDelta is: " + ageBioDelta;
+        }
     </script>
-
 </body>
 </html>
