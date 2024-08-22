@@ -3,41 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BMI Calculation</title>
+    <title>Phenotype Age Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Phenotype Age Calculator</h1>
+        <p class="description">
+            Discover your phenotype age and compare it with your biological age to understand how your body is aging.
+        </p>
+        <button id="startButton">Calculate Your Phenotype Age</button>
 
-    <h1>Calculate Your AgeBioDelta</h1>
+        <div id="inputSection" class="hidden">
+            <div class="gender-switch">
+                <label for="gender">Gender:</label>
+                <select id="gender">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+            </div>
 
-    <!-- Example button to trigger calculation -->
-    <button onclick="calculateAndShowAgeBioDelta()">Calculate AgeBioDelta</button>
+            <div class="input-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" value="45">
+            </div>
 
-    <!-- Result will be shown here -->
-    <div id="result"></div>
+            <div class="input-group">
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" value="170">
+            </div>
 
-    <!-- Include the ageBioDelta.js file -->
+            <div class="input-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" value="75">
+            </div>
+
+            <div class="input-group">
+                <label for="MAC">MAC (cm):</label>
+                <input type="number" id="MAC" value="32">
+            </div>
+
+            <div class="input-group">
+                <label for="TSF">TSF (mm):</label>
+                <input type="number" id="TSF" value="18">
+            </div>
+
+            <div class="input-group">
+                <label for="SSF">SSF (mm):</label>
+                <input type="number" id="SSF" value="20">
+            </div>
+
+            <div class="input-group">
+                <label for="THC">THC (cm):</label>
+                <input type="number" id="THC" value="52">
+            </div>
+
+            <div class="input-group">
+                <label for="CAC">CAC (cm):</label>
+                <input type="number" id="CAC" value="38">
+            </div>
+
+            <div class="input-group">
+                <label for="WC">WC (cm):</label>
+                <input type="number" id="WC" value="93">
+            </div>
+
+            <button id="calculateButton">Compute Phenotype Age</button>
+        </div>
+
+        <div id="resultSection" class="hidden">
+            <p id="result"></p>
+        </div>
+    </div>
+
     <script src="ageBioDelta.js"></script>
-
-    <script>
-        function calculateAndShowAgeBioDelta() {
-            // Example data for testing
-            let height = 170; // cm
-            let weight = 75;  // kg
-            let MAC = 32;     // cm
-            let TSF = 18;     // mm
-            let SSF = 20;     // mm
-            let THC = 52;     // cm
-            let CAC = 38;     // cm
-            let WC = 93;      // cm
-            let age = 45;     // Age of the user
-            let gender = "female"; // Gender of the user ("female" or "male")
-
-            // Call the function from ageBioDelta.js
-            let ageBioDelta = calculateAgeBioDelta(height, weight, MAC, TSF, SSF, THC, CAC, WC, age, gender);
-
-            // Display the result
-            document.getElementById('result').innerText = "The calculated ageBioDelta is: " + ageBioDelta;
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
