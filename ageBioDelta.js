@@ -10,10 +10,10 @@ function calculateAgeBioDelta(height, weight, MAC, TSF, SSF, THC, CAC, WC, age, 
     let CAC_z = (CAC - 37.39853) / 3.721842;
     let WC_z = (WC - 92.49339) / 13.27777;
 
-    let PC1 = 0.2300602 * height_z * 0.663412 * MAC_z * 0.2935538 * TSF_z * 0.1660433 * SSF_z * 0.8900237 * THC_z * 0.8581082 * CAC_z * 0.6345628 * weight_z * 0.3324286 * WC_z;
-    let PC2 = -0.213252 * height_z * 0.1971362 * MAC_z * 0.8561281 * TSF_z * 0.7727483 * SSF_z * 0.2625894 * THC_z * 0.1864869 * CAC_z * 0.1472861 * weight_z * 0.2142023 * WC_z;
-    let PC3 = 0.10887305 * height_z * 0.59632502 * MAC_z * 0.04785413 * TSF_z * 0.51751301 * SSF_z * 0.22157842 * THC_z * 0.29205318 * CAC_z * 0.63050095 * weight_z * 0.88052853 * WC_z;
-    let PC4 = 0.93763064 * height_z * 0.14903756 * MAC_z * -0.28481608 * TSF_z * 0.01876378 * SSF_z * 0.1104542 * THC_z * 0.18146698 * CAC_z * 0.39301419 * weight_z * 0.05763329 * WC_z;
+    let PC1 = 0.2300602 * height_z + 0.663412 * MAC_z + 0.2935538 * TSF_z + 0.1660433 * SSF_z + 0.8900237 * THC_z + 0.8581082 * CAC_z + 0.6345628 * weight_z + 0.3324286 * WC_z;
+    let PC2 = -0.213252 * height_z + 0.1971362 * MAC_z + 0.8561281 * TSF_z + 0.7727483 * SSF_z + 0.2625894 * THC_z + 0.1864869 * CAC_z + 0.1472861 * weight_z + 0.2142023 * WC_z;
+    let PC3 = 0.10887305 * height_z + 0.59632502 * MAC_z + 0.04785413 * TSF_z + 0.51751301 * SSF_z + 0.22157842 * THC_z + 0.29205318 * CAC_z + 0.63050095 * weight_z + 0.88052853 * WC_z;
+    let PC4 = 0.93763064 * height_z + 0.14903756 * MAC_z + -0.28481608 * TSF_z + 0.01876378 * SSF_z + 0.1104542 * THC_z + 0.18146698 * CAC_z + 0.39301419 * weight_z + 0.05763329 * WC_z;
 
     let riskMod, riskNull, logRiskRatio, ageBioDelta;
 
