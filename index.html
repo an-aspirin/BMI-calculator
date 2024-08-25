@@ -3,80 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phenotype Age Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .input-field {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Phenotype Age Calculator</h1>
-        <p class="description">
-            Discover your phenotype age and compare it with your biological age to understand how your body is aging.
-        </p>
-        <button id="startButton">Calculate Your Phenotype Age</button>
 
-        <div id="inputSection" class="hidden">
-            <div class="gender-switch">
-                <label for="gender">Gender:</label>
-                <select id="gender">
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                </select>
-            </div>
+    <h1>BMI Calculator</h1>
+    <p>A quick tool to calculate your Body Mass Index (BMI) based on your weight and height.</p>
 
-            <div class="input-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" value="45">
-            </div>
+    <button id="startBtn" class="button">Start Here</button>
 
-            <div class="input-group">
-                <label for="height">Height (cm):</label>
-                <input type="number" id="height" value="170">
-            </div>
-
-            <div class="input-group">
-                <label for="weight">Weight (kg):</label>
-                <input type="number" id="weight" value="75">
-            </div>
-
-            <div class="input-group">
-                <label for="MAC">MAC (cm):</label>
-                <input type="number" id="MAC" value="32">
-            </div>
-
-            <div class="input-group">
-                <label for="TSF">TSF (mm):</label>
-                <input type="number" id="TSF" value="18">
-            </div>
-
-            <div class="input-group">
-                <label for="SSF">SSF (mm):</label>
-                <input type="number" id="SSF" value="20">
-            </div>
-
-            <div class="input-group">
-                <label for="THC">THC (cm):</label>
-                <input type="number" id="THC" value="52">
-            </div>
-
-            <div class="input-group">
-                <label for="CAC">CAC (cm):</label>
-                <input type="number" id="CAC" value="38">
-            </div>
-
-            <div class="input-group">
-                <label for="WC">WC (cm):</label>
-                <input type="number" id="WC" value="93">
-            </div>
-
-            <button id="calculateButton">Compute Phenotype Age</button>
-        </div>
-
-        <div id="resultSection" class="hidden">
-            <p id="result"></p>
-        </div>
+    <div id="inputSection" class="hidden">
+        <input id="weight" class="input-field" type="number" placeholder="Enter weight in kg" required>
+        <input id="height" class="input-field" type="number" placeholder="Enter height in cm" required>
+        <button id="calculateBtn" class="button">Calculate BMI</button>
     </div>
 
-    <script src="ageBioDelta.js"></script>
-    <script src="script.js"></script>
+    <div id="resultSection" class="hidden result"></div>
+
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            this.classList.add('hidden');
+            document.getElementById('inputSection').classList.remove('hidden');
+        });
+
+        document.getElementById('calculateBtn').addEventListener('click', function() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // convert height to meters
+            if (isNaN(weight) || isNaN(height) || height <= 0) {
+                alert('Please enter valid weight and height values.');
+                return;
+            }
+
+            const bmi = weight / (height * height);
+            let message = '';
+
+            if (bmi < 18.5) {
+                message = 'Underweight. Consider gaining weight.';
+            } else if (bmi >= 18.5 && bmi < 24.9) {
+                message = 'Normal weight. Keep up the good work!';
+            } else if (bmi >= 25 && bmi < 29.9) {
+                message = 'Overweight. Consider losing some weight.';
+            } else {
+                message = 'Obesity. Consult a healthcare provider for advice.';
+            }
+
+            document.getElementById('resultSection').innerHTML = `Your BMI is ${bmi.toFixed(2)}. ${message}`;
+            document.getElementById('resultSection').classList.remove('hidden');
+        });
+    </script>
+
 </body>
 </html>
